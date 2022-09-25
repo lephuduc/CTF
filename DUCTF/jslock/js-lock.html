@@ -157,59 +157,7 @@
                     disable()
                 }
             }
-            function find_idx(input_list,elem){
-                for (let i = 0;i<input_list.length;i++){
-                    if (typeof input_list[i]=='object'){
-                        result = find_idx(input_list[i], elem); 
-                        if (result){
-                            return i.toString()+','+result.toString(); 
-                        }
-                    }
-                    else if (input_list[i]==elem){
-                        return i.toString();
-                    }
-                }
-                return false;
-            }
-            function idx_to_bin(str){
-                var result= '';
-                str = str.split(',');
-                var n = str.length
-                for (let i = 0;i<n;i++){
-                        if (str[i]=='0'){
-                            result +='0';
-                        }
-                        else if(str[i]!='0'){
-                            result+='1'.repeat(parseInt(str[i]));
-                            result+='0';
-                        }   
-                    }
-                return result;
-            }
-            function print_test(){
-                var s = "";
-                for (let i = 1;i<1338;i++){
-                   s = s.concat(idx_to_bin(find_idx(LOCK,i)));
-                }
-                S.key= s;
-                return s;
-            }
-            function enter_test(s){
-                    for (let i = 0;i<s.length;i++){
-                        if (s[i]=='0') hit_0();
-                        else hit_1();
-                    }
-                    submit_pin();
-                } 
-            function sleep(ms) {
-                return new Promise(resolve => setTimeout(resolve, ms));
-            }    
-            function get_flag(){
-                for (let i = 1;i<1338;i++){
-                    enter_test(idx_to_bin(find_idx(LOCK,i)))
-                    sleep(500);
-                }
-            }
+
             async function win() {
                 const K = await sha512(S.key)
                 const dec = []
