@@ -1,0 +1,3 @@
+nguyen@nguyen:~/Desktop/test$ ./a.out 
+Oh no, someone leaked something...
+AE 88 89
